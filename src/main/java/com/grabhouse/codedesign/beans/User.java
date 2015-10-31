@@ -19,6 +19,9 @@ public class User {
     private String uuid;
     private String emailId;
     private String phoneNumber;
+    private String role;
+    private String name;
+    private String password;
 
     public User(){}
 
@@ -62,6 +65,35 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
+    public String getRole() { return this.role; }
+
+    public void setRole(String role) { this.role = role; }
+
+    public String getName() { return this.name; }
+
+    public void setName(String name) { this.name = name; }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId='" + userId + '\'' +
+                ", userName='" + userName + '\'' +
+                ", uuid='" + uuid + '\'' +
+                ", emailId='" + emailId + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", role='" + role + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -73,7 +105,9 @@ public class User {
         if (!getUserName().equals(user.getUserName())) return false;
         if (getUuid() != null ? !getUuid().equals(user.getUuid()) : user.getUuid() != null) return false;
         if (!getEmailId().equals(user.getEmailId())) return false;
-        return getPhoneNumber().equals(user.getPhoneNumber());
+        if (!getPhoneNumber().equals(user.getPhoneNumber())) return false;
+        if (!getName().equals(user.getName())) return false;
+        return getRole().equals(user.getRole());
 
     }
 
@@ -84,17 +118,8 @@ public class User {
         result = 31 * result + (getUuid() != null ? getUuid().hashCode() : 0);
         result = 31 * result + getEmailId().hashCode();
         result = 31 * result + getPhoneNumber().hashCode();
+        result = 31 * result + getRole().hashCode();
+        result = 31 * result + getName().hashCode();
         return result;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "userId='" + userId + '\'' +
-                ", userName='" + userName + '\'' +
-                ", uuid='" + uuid + '\'' +
-                ", emailId='" + emailId + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                '}';
     }
 }

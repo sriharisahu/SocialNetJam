@@ -1,4 +1,4 @@
-package com.grabhouse.codedesign.controller;
+package com.grabhouse.codedesign.apicontroller;
 
 import com.google.gson.Gson;
 import com.grabhouse.codedesign.beans.House;
@@ -16,7 +16,7 @@ import java.io.PrintWriter;
 /**
  * Created by srihari on 31/10/15.
  */
-@WebServlet(name="houseController", urlPatterns = {"/houses","/houses/*"})
+@WebServlet(name="houseController", urlPatterns = "/api/houses")
 public class HouseController extends HttpServlet{
     private House house = null;
     private Gson gson = new Gson();

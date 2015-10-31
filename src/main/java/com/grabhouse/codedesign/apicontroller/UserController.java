@@ -1,4 +1,4 @@
-package com.grabhouse.codedesign.controller;
+package com.grabhouse.codedesign.apicontroller;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,7 +16,7 @@ import java.io.PrintWriter;
 /**
  * Created by srihari on 31/10/15.
  */
-@WebServlet(name="userController", urlPatterns = {"/user","/user/*"})
+@WebServlet(name="userController", urlPatterns = "/api/user")
 public class UserController extends HttpServlet {
     Logger logger = LogManager.getLogger(this.getClass());
     String userId = null;
