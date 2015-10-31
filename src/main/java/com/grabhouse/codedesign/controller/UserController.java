@@ -19,12 +19,13 @@ import java.io.PrintWriter;
 @WebServlet(name="userController", urlPatterns = {"/user","/user/*"})
 public class UserController extends HttpServlet {
     Logger logger = LogManager.getLogger(this.getClass());
+    String userId = null;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String UserId = req.getParameter("userId");
+        userId = req.getParameter("userId");
         PrintWriter out = resp.getWriter();
-        out.println("Hello User "+ UserId);
+        out.println("Hello User "+ userId);
         out.flush();
     }
 

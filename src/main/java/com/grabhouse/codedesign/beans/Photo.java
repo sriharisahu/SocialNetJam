@@ -1,26 +1,38 @@
 package com.grabhouse.codedesign.beans;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * Created by srihari on 31/10/15.
  */
+@Entity
+@Table(name="PHOTO")
 public class Photo {
-    public String photoId;
-    public String location;
+    @Id
+    @GeneratedValue
+    public Integer photoId;
+    public String photoUrl;
 
-    public String getPhotoId() {
+    public Photo(){}
+
+    public Integer getPhotoId() {
         return photoId;
     }
 
-    public void setPhotoId(String photoId) {
+    public void setPhotoId(Integer photoId) {
         this.photoId = photoId;
     }
 
-    public String getLocation() {
-        return location;
+
+    public String getPhotoUrl() {
+        return photoUrl;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 
     @Override
@@ -30,15 +42,15 @@ public class Photo {
 
         Photo photo = (Photo) o;
 
-        if (getPhotoId() != null ? !getPhotoId().equals(photo.getPhotoId()) : photo.getPhotoId() != null) return false;
-        return !(getLocation() != null ? !getLocation().equals(photo.getLocation()) : photo.getLocation() != null);
+        if (!getPhotoId().equals(photo.getPhotoId())) return false;
+        return !(getPhotoUrl() != null ? !getPhotoUrl().equals(photo.getPhotoUrl()) : photo.getPhotoUrl() != null);
 
     }
 
     @Override
     public int hashCode() {
-        int result = getPhotoId() != null ? getPhotoId().hashCode() : 0;
-        result = 31 * result + (getLocation() != null ? getLocation().hashCode() : 0);
+        int result = getPhotoId().hashCode();
+        result = 31 * result + (getPhotoUrl() != null ? getPhotoUrl().hashCode() : 0);
         return result;
     }
 }

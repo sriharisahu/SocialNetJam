@@ -20,13 +20,16 @@ import java.io.PrintWriter;
 public class HouseController extends HttpServlet{
     private House house = null;
     private Gson gson = new Gson();
+    String houseId = null;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String houseId = req.getParameter("houseId");
+        houseId = req.getParameter("houseId");
         if(houseId != null){
             house = new House();
-            house.setHouseId(houseId);
+            house.setHouseId(Integer.parseInt(houseId));
+        }else{
+
         }
 
         resp.setContentType("application/json");
@@ -65,6 +68,6 @@ public class HouseController extends HttpServlet{
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String houseId = req.getParameter("houseId");
+        houseId = req.getParameter("houseId");
     }
 }

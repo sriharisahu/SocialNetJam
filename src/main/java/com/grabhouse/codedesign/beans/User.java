@@ -1,14 +1,26 @@
 package com.grabhouse.codedesign.beans;
 
+import javax.persistence.*;
+
 /**
  * Created by srihari on 31/10/15.
+ *
  */
+@Entity
+@Table(name = "user", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "userName"),
+        @UniqueConstraint(columnNames = "phoneNumber")
+})
 public class User {
+    @Id
+    @GeneratedValue
     private String userId;
     private String userName;
     private String uuid;
     private String emailId;
     private String phoneNumber;
+
+    public User(){}
 
     public String getUserId() {
         return userId;

@@ -1,25 +1,33 @@
 package com.grabhouse.codedesign.beans;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by srihari on 31/10/15.
  */
+@Entity
+@Table(name = "HOUSE")
 public class House implements Serializable {
-    private String houseId;
+    @Id
+    @GeneratedValue
+    private Integer houseId;
     private double locationX;
     private double locationY;
     private String description;
     private float price;
     private String location;
     private List<Photo> photos;
+    private Integer ownerId;
 
-    public String getHouseId() {
+    public House(){}
+
+    public Integer getHouseId() {
         return houseId;
     }
 
-    public void setHouseId(String houseId) {
+    public void setHouseId(Integer houseId) {
         this.houseId = houseId;
     }
 
@@ -72,7 +80,6 @@ public class House implements Serializable {
     }
 
     @Override
-
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof House)) return false;
@@ -83,7 +90,11 @@ public class House implements Serializable {
         if (Double.compare(house.getLocationY(), getLocationY()) != 0) return false;
         if (Float.compare(house.getPrice(), getPrice()) != 0) return false;
         if (!getHouseId().equals(house.getHouseId())) return false;
-        return getDescription().equals(house.getDescription());
+        if (getDescription() != null ? !getDescription().equals(house.getDescription()) : house.getDescription() != null)
+            return false;
+        if (getLocation() != null ? !getLocation().equals(house.getLocation()) : house.getLocation() != null)
+            return false;
+        return !(getPhotos() != null ? !getPhotos().equals(house.getPhotos()) : house.getPhotos() != null);
 
     }
 
@@ -96,22 +107,10 @@ public class House implements Serializable {
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(getLocationY());
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + getDescription().hashCode();
+        result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);
         result = 31 * result + (getPrice() != +0.0f ? Float.floatToIntBits(getPrice()) : 0);
+        result = 31 * result + (getLocation() != null ? getLocation().hashCode() : 0);
+        result = 31 * result + (getPhotos() != null ? getPhotos().hashCode() : 0);
         return result;
     }
-
-    @Override
-    public String toString() {
-        return "House{" +
-                "houseId='" + houseId + '\'' +
-                ", locationX=" + locationX +
-                ", locationY=" + locationY +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                ", location='" + location + '\'' +
-                ", photos=" + photos +
-                '}';
-    }
-
 }
