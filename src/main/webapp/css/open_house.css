@@ -74,22 +74,18 @@ form {
 #main form label{
 	color: #575757;
 	display: block;
-	font-size: 12px;
 	font-weight: bold;
 	margin: 0 0 5px 0;
 	padding: 0 0 0 3px;
 }
 #main form label span{
-	color: #b8b8b8;
-	font-size: 11px;
+	color: #b8b8b8
 	font-weight: normal;
 }
 #main form input, #main form select, #main form textarea{
 	background: #FFFFFF;
 	border: 1px solid #DDDDDD;
 	border-radius: 3px;
-	font-size: 11px;
-	font-family: Tahoma, Arial, Helvetica, sans-serif;
 	padding: 5px 3px;
 }
 #main form input:focus, #main form select:focus, #main form textarea:focus{	border: 1px solid #b3b3b3;}
@@ -130,10 +126,11 @@ table th{
 	color: #DACDCD;
 	border-left: 1px solid #ffffff;
 	border-right: 1px solid #ffffff;
-	font-size: 11px; 
 	font-weight: bold; 
 	padding: 7px; 
 	text-shadow: 0px 1px #242424; 
+	text-align: left;
+	
 }
 table tr{ 
 	border-left: 1px solid #ffffff;
@@ -144,6 +141,7 @@ table td{
 	border-top: 1px solid ffffff; 
 	color: #565656;
 	padding: 8px; 
+	text-align: left;
 }
 /* table tr:hover td{ 
 	background: #fff8cf;
@@ -155,7 +153,6 @@ table .chb{
 
 .heding_txt{
     color: #BEBEBE;
-    font-size: 11px;
     font-weight: normal;
     height: 22px;
     padding: 7px 0 0 15px;
@@ -195,5 +192,5 @@ table .chb{
 .error{
 	color : red;
 	background-color : yellow;
-	width : 650px;
+	width : 700px;
 }
