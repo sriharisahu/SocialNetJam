@@ -8,7 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
 /**
@@ -28,12 +30,30 @@ public class UserController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        BufferedReader br = new BufferedReader(new InputStreamReader(req.getInputStream()));
+        String line;
+        StringBuilder json = new StringBuilder();
+        while((line = br.readLine() ) != null){
+            json.append(line);
+        }
+        resp.setContentType("application/json");
+        PrintWriter pw = resp.getWriter();
+        pw.print(json);
+        pw.flush();
     }
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPut(req, resp);
+        BufferedReader br = new BufferedReader(new InputStreamReader(req.getInputStream()));
+        String line;
+        StringBuilder json = new StringBuilder();
+        while((line = br.readLine() ) != null){
+            json.append(line);
+        }
+        resp.setContentType("application/json");
+        PrintWriter pw = resp.getWriter();
+        pw.print(json);
+        pw.flush();
     }
 
     @Override

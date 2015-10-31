@@ -8,10 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.Scanner;
 
 /**
  * Created by srihari on 31/10/15.
@@ -37,25 +37,29 @@ public class HouseController extends HttpServlet{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Scanner scanner = new Scanner(new InputStreamReader(req.getInputStream()));
-        StringBuilder input = null;
-        while(scanner.hasNext()){
-            input.append(scanner.next());
+        BufferedReader br = new BufferedReader(new InputStreamReader(req.getInputStream()));
+        String line;
+        StringBuilder json = new StringBuilder();
+        while((line = br.readLine() ) != null){
+            json.append(line);
         }
-        //resp.setContentType("application/json");
+        resp.setContentType("application/json");
         PrintWriter pw = resp.getWriter();
-        pw.print(input.toString());
+        pw.print(json);
         pw.flush();
     }
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Scanner scanner = new Scanner(new InputStreamReader(req.getInputStream()));
-        String input = null;
-        if(scanner.hasNext()) input = scanner.next();
-        //resp.setContentType("application/json");
+        BufferedReader br = new BufferedReader(new InputStreamReader(req.getInputStream()));
+        String line;
+        StringBuilder json = new StringBuilder();
+        while((line = br.readLine() ) != null){
+            json.append(line);
+        }
+        resp.setContentType("application/json");
         PrintWriter pw = resp.getWriter();
-        pw.print(input);
+        pw.print(json);
         pw.flush();
     }
 
