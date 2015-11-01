@@ -10,9 +10,10 @@
         <property name="hbm2ddl.auto">create</property>
 
         <!-- Mapping -->
-        <!--mapping class="com.grabhouse.codedesign.beans.House" /-->
+        <mapping class="com.grabhouse.codedesign.beans.House" />
         <mapping class="com.grabhouse.codedesign.beans.Photo" />
         <mapping class="com.grabhouse.codedesign.beans.Review" />
         <mapping class="com.grabhouse.codedesign.beans.User" />
+        <mapping class="com.grabhouse.codedesign.beans.Bid" />
     </session-factory>
 </hibernate-configuration>

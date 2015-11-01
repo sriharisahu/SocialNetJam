@@ -7,14 +7,14 @@ import javax.persistence.*;
  *
  */
 @Entity
-@Table(name = "user", uniqueConstraints = {
+@Table(name = "grabhouse_user", uniqueConstraints = {
         @UniqueConstraint(columnNames = "userName"),
         @UniqueConstraint(columnNames = "phoneNumber")
 })
 public class User {
     @Id
     @GeneratedValue
-    private String userId;
+    private Integer userId;
     private String userName;
     private String uuid;
     private String emailId;
@@ -25,11 +25,11 @@ public class User {
 
     public User(){}
 
-    public String getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 

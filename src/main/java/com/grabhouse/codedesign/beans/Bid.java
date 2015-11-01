@@ -1,9 +1,18 @@
 package com.grabhouse.codedesign.beans;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * Created by srihari on 1/11/15.
  */
+@Entity
+@Table(name = "bid")
 public class Bid {
+    @Id
+    @GeneratedValue
     private Integer bidId;
     private int bidPrice;
     private Integer houseId;

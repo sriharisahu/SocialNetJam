@@ -1,6 +1,7 @@
 package com.grabhouse.codedesign.beans;
 
 import javax.persistence.*;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -8,7 +9,7 @@ import java.util.List;
  * Created by srihari on 31/10/15.
  */
 @Entity
-@Table(name = "HOUSE")
+@Table(name = "house")
 public class House implements Serializable {
     @Id
     @GeneratedValue
@@ -18,10 +19,22 @@ public class House implements Serializable {
     private String description;
     private float price;
     private String location;
+    private String userName;
+    @OneToMany
+    @JoinColumn(name = "photoId")
     private List<Photo> photos;
     private Integer ownerId;
+    private String houseType;
 
-    public House(){}
+    public String getHouseType() {
+		return houseType;
+	}
+
+	public void setHouseType(String houseType) {
+		this.houseType = houseType;
+	}
+
+	public House(){}
 
     public Integer getHouseId() {
         return houseId;
@@ -79,38 +92,108 @@ public class House implements Serializable {
         this.photos = photos;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof House)) return false;
-
-        House house = (House) o;
-
-        if (Double.compare(house.getLocationX(), getLocationX()) != 0) return false;
-        if (Double.compare(house.getLocationY(), getLocationY()) != 0) return false;
-        if (Float.compare(house.getPrice(), getPrice()) != 0) return false;
-        if (!getHouseId().equals(house.getHouseId())) return false;
-        if (getDescription() != null ? !getDescription().equals(house.getDescription()) : house.getDescription() != null)
-            return false;
-        if (getLocation() != null ? !getLocation().equals(house.getLocation()) : house.getLocation() != null)
-            return false;
-        return !(getPhotos() != null ? !getPhotos().equals(house.getPhotos()) : house.getPhotos() != null);
-
+    public Integer getOwnerId() {
+        return ownerId;
     }
 
-    @Override
-    public int hashCode() {
-        int result;
-        long temp;
-        result = getHouseId().hashCode();
-        temp = Double.doubleToLongBits(getLocationX());
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(getLocationY());
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);
-        result = 31 * result + (getPrice() != +0.0f ? Float.floatToIntBits(getPrice()) : 0);
-        result = 31 * result + (getLocation() != null ? getLocation().hashCode() : 0);
-        result = 31 * result + (getPhotos() != null ? getPhotos().hashCode() : 0);
-        return result;
+    public void setOwnerId(Integer ownerId) {
+        this.ownerId = ownerId;
     }
+
+    
+    public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ((houseId == null) ? 0 : houseId.hashCode());
+		result = prime * result
+				+ ((houseType == null) ? 0 : houseType.hashCode());
+		result = prime * result
+				+ ((location == null) ? 0 : location.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(locationX);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(locationY);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((ownerId == null) ? 0 : ownerId.hashCode());
+		result = prime * result + ((photos == null) ? 0 : photos.hashCode());
+		result = prime * result + Float.floatToIntBits(price);
+		result = prime * result
+				+ ((userName == null) ? 0 : userName.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		House other = (House) obj;
+		if (description == null) {
+			if (other.description != null)
+				return false;
+		} else if (!description.equals(other.description))
+			return false;
+		if (houseId == null) {
+			if (other.houseId != null)
+				return false;
+		} else if (!houseId.equals(other.houseId))
+			return false;
+		if (houseType == null) {
+			if (other.houseType != null)
+				return false;
+		} else if (!houseType.equals(other.houseType))
+			return false;
+		if (location == null) {
+			if (other.location != null)
+				return false;
+		} else if (!location.equals(other.location))
+			return false;
+		if (Double.doubleToLongBits(locationX) != Double
+				.doubleToLongBits(other.locationX))
+			return false;
+		if (Double.doubleToLongBits(locationY) != Double
+				.doubleToLongBits(other.locationY))
+			return false;
+		if (ownerId == null) {
+			if (other.ownerId != null)
+				return false;
+		} else if (!ownerId.equals(other.ownerId))
+			return false;
+		if (photos == null) {
+			if (other.photos != null)
+				return false;
+		} else if (!photos.equals(other.photos))
+			return false;
+		if (Float.floatToIntBits(price) != Float.floatToIntBits(other.price))
+			return false;
+		if (userName == null) {
+			if (other.userName != null)
+				return false;
+		} else if (!userName.equals(other.userName))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "House [houseId=" + houseId + ", locationX=" + locationX
+				+ ", locationY=" + locationY + ", description=" + description
+				+ ", price=" + price + ", location=" + location + ", userName="
+				+ userName + ", photos=" + photos + ", ownerId=" + ownerId
+				+ ", houseType=" + houseType + "]";
+	}
 }

@@ -1,22 +1,21 @@
 package com.grabhouse.codedesign.beans;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
  * Created by srihari on 31/10/15.
  */
 @Entity
-@Table(name = "REVIEW")
+@Table(name = "review")
 public class Review {
     @Id
     @GeneratedValue
     private Integer reviewId;
     private String userId;
-    private String houseId;
+    @OneToOne
+    @JoinColumn(name = "houseId")
+    private House house;
     private String description;
     private Date createdTime;
     private Date updatedTime;
@@ -39,12 +38,12 @@ public class Review {
         this.userId = userId;
     }
 
-    public String getHouseId() {
-        return houseId;
+    public House getHouse() {
+        return house;
     }
 
-    public void setHouseId(String houseId) {
-        this.houseId = houseId;
+    public void setHouse(House house) {
+        this.house = house;
     }
 
     public String getDescription() {
@@ -80,7 +79,7 @@ public class Review {
 
         if (!getReviewId().equals(review.getReviewId())) return false;
         if (!getUserId().equals(review.getUserId())) return false;
-        if (!getHouseId().equals(review.getHouseId())) return false;
+        if (!getHouse().equals(review.getHouse())) return false;
         if (getDescription() != null ? !getDescription().equals(review.getDescription()) : review.getDescription() != null)
             return false;
         if (getCreatedTime() != null ? !getCreatedTime().equals(review.getCreatedTime()) : review.getCreatedTime() != null)
@@ -93,7 +92,7 @@ public class Review {
     public int hashCode() {
         int result = getReviewId().hashCode();
         result = 31 * result + getUserId().hashCode();
-        result = 31 * result + getHouseId().hashCode();
+        result = 31 * result + getHouse().hashCode();
         result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);
         result = 31 * result + (getCreatedTime() != null ? getCreatedTime().hashCode() : 0);
         result = 31 * result + (getUpdatedTime() != null ? getUpdatedTime().hashCode() : 0);
@@ -105,7 +104,7 @@ public class Review {
         return "Review{" +
                 "reviewId=" + reviewId +
                 ", userId='" + userId + '\'' +
-                ", houseId='" + houseId + '\'' +
+                ", house=" + house +
                 ", description='" + description + '\'' +
                 ", createdTime=" + createdTime +
                 ", updatedTime=" + updatedTime +

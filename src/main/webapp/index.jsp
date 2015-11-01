@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <%@ include file="init.jsp"%>
 <html>
 <head>
@@ -8,22 +8,28 @@
 <title>User Login</title>
 </head>
 <body>
+<%
+String role = (String) session.getAttribute("userType");
+if("House Owner".equals(role)) {
+	request.getRequestDispatcher("owner_home.jsp").forward(request, response);
+} else if("House Seeker".equals(role)) {
+	request.getRequestDispatcher("seeker_home.jsp").forward(request, response);
+}
+%>
 <div id="main">
  <form action="login" method="post">
 <table>
-<% String message = null;
- 	message = (String) request.getAttribute("message");
-	if(message != null){%>
-	<div class="error"><%= message%></div>
-	<%}%>
+
+	<div class="error">${message }</div>
+	
 	<thead>Login</thead>
 	<tr>
 		<th>User Name</th>
-		<td><input type="text" name="userName" id="userName"/></td>
+		<td><input type="text" name="userName" id="userName" required="required"/></td>
 	</tr>
 	<tr>
 		<th style="border: 1px solid;">Password</th>
-		<td><input type="text" name="password" id="password"/></td>
+		<td><input  type="password"  name="password" id="password" required="required"/></td>
 	</tr>
 	<tr>
 		<td>&nbsp;</td>

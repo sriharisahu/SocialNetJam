@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <%@ include file="init.jsp"%>
 <html>
 <head>
@@ -14,7 +14,7 @@
 		<thead>Forgot Password</thead>
 		<tr>
 			<th>Enter Email Id</th>
-			<td><input type="text" name="emailId" id="emailId"/></td>
+			<td><input type="email" name="emailId" id="emailId" required="required"/></td>
 		</tr>
 		<tr>		
 			<td>&nbsp;</td>
